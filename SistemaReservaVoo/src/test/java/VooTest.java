@@ -1,22 +1,24 @@
 import static org.junit.Assert.*;
 import org.junit.*;
+import org.sistema.reserva.voo.entidades.Cliente;
+import org.sistema.reserva.voo.entidades.Voo;
 
 public class VooTest {
 
     @Test
     public void testIsDisponivel() {
-        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100);
+        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100, "16h");
         assertTrue(voo.isDisponivel());
 
         // Reservando o voo
-        Cliente cliente = new Cliente("Vanderson");
+        Cliente cliente = new Cliente("Vanderson", 2, "565675745");
         voo.setCliente(cliente);
         assertFalse(voo.isDisponivel());
     }
 
     @Test
     public void testGetPrecoTotal() {
-        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 5);
+        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 5, "17h");
         assertEquals(500.0, voo.getPrecoTotal(), 0.001);
 
         // Modificando o preço do voo
@@ -26,8 +28,8 @@ public class VooTest {
 
     @Test
     public void testImprimirDetalhes() {
-        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100);
-        Cliente cliente = new Cliente("João");
+        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100, "20h");
+        Cliente cliente = new Cliente("João", 1, "6476347843");
         voo.setCliente(cliente);
 
         // Verifica se a impressão não lança exceções

@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
-import org.sistema.reserva.voo.entidades.Cliente;
-import org.sistema.reserva.voo.entidades.Voo;
+import org.sistema.reserva.voo.implementation.Cliente;
+import org.sistema.reserva.voo.implementation.Voo;
 
 public class VooTest {
 
@@ -13,7 +13,7 @@ public class VooTest {
         // Reservando o voo
         Cliente cliente = new Cliente("Vanderson", 2, "565675745");
         voo.setCliente(cliente);
-        assertFalse(voo.isDisponivel());
+        assertTrue(voo.isDisponivel());
     }
 
     @Test

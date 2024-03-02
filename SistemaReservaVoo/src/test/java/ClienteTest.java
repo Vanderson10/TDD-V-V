@@ -1,10 +1,8 @@
-import static org.junit.Assert.*;
-import org.junit.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.sistema.reserva.voo.entidades.Cliente;
-import org.sistema.reserva.voo.entidades.Sistema;
-import org.sistema.reserva.voo.entidades.Voo;
+import org.sistema.reserva.voo.implementation.Cliente;
+import org.sistema.reserva.voo.implementation.Sistema;
+import org.sistema.reserva.voo.implementation.Voo;
 
 public class ClienteTest {
 

@@ -1,8 +1,8 @@
 package org.sistema.reserva.voo;
 
-import org.sistema.reserva.voo.entidades.Cliente;
-import org.sistema.reserva.voo.entidades.Sistema;
-import org.sistema.reserva.voo.entidades.Voo;
+import org.sistema.reserva.voo.implementation.Cliente;
+import org.sistema.reserva.voo.implementation.Sistema;
+import org.sistema.reserva.voo.implementation.Voo;
 
 import java.util.Scanner;
 

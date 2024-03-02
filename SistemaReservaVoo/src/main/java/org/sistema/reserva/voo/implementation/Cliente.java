@@ -1,4 +1,4 @@
-package org.sistema.reserva.voo.entidades;
+package org.sistema.reserva.voo.implementation;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

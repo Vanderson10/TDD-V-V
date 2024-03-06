@@ -1,6 +1,7 @@
 import domain.Boleto;
 import domain.Fatura;
 import domain.ProcessadorBoletos;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class ProcessadorBoletosTest {
     @BeforeEach
     public void criarProcessadorEFatura() {
         this.processadorBoletos = new ProcessadorBoletos();
-        this.fatura = new Fatura(LocalDate.now(), 250, "Fulano");
+        this.fatura = new Fatura(1, LocalDate.now(), 250, "Fulano");
     }
 
     @Test
@@ -55,5 +56,20 @@ public class ProcessadorBoletosTest {
 
         assertTrue(this.processadorBoletos.processaFatura(fatura, boletoList) < fatura.getValorTotal());
         assertEquals(150, this.processadorBoletos.processaFatura(fatura, boletoList));
+    }
+
+    @Test
+    public void processarFaturaJaProcessadaTest() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 50));
+        boletoList.add(new Boleto("20", LocalDate.now(), 100));
+        this.processadorBoletos.processaFatura(fatura, boletoList);
+
+        List<Boleto> boletoList2 = new ArrayList<Boleto>();
+
+        boletoList2.add(new Boleto("5", LocalDate.now(), 30));
+        boletoList2.add(new Boleto("6", LocalDate.now(), 60));
+
+        assertEquals(240, this.processadorBoletos.processaFatura(fatura, boletoList2));
     }
 }

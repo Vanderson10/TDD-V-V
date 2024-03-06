@@ -12,7 +12,7 @@ public class Cliente {
     private String nome;
     private int numeroPassageirosEmbarcar;
     private String telefone;
-    private ArrayList<Voo> voosReservados;
+    private List<Voo> voosReservados;
 
     public Cliente(String nome, int numeroPassageirosEmbarcar, String telefone) {
         this.nome = nome;

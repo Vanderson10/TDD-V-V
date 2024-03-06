@@ -23,6 +23,7 @@ public class Fatura {
         this.valorTotal = valorTotal;
         this.nomeCliente = nomeCliente;
         this.pagamentosAssociados = new ArrayList<>();
+        this.statusFatura = StatusFatura.PENDENTE;
     }
 
     public int getId() {
@@ -71,5 +72,10 @@ public class Fatura {
 
     public void setStatusFatura(StatusFatura statusFatura) {
         this.statusFatura = statusFatura;
+    }
+
+    @Override
+    public String toString() {
+        return "O status da fatura " + getId() + "é: " + getStatusFatura() .toString();
     }
 }

@@ -20,5 +20,19 @@ public class ProcessadorBoletos {
         this.faturasProcessadas = faturasProcessadas;
     }
 
+    public double processaFatura(Fatura fatura, List<Boleto> boletos) {
+        float totalPago = 0;
+
+        for (Boleto boleto : boletos) {
+            totalPago += boleto.getValorPago();
+        }
+
+        this.faturasProcessadas.add(fatura);
+
+        if (totalPago >= fatura.getValorTotal()) {
+            fatura.setStatusFatura(StatusFatura.PAGA);
+        }
+        return totalPago;
+    }
 
 }

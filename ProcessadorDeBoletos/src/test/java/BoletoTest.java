@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class BoletoTest {
 
     @Test
-    public void criarBoletoTest(){
+    public void criarBoletoTest() {
         Boleto boleto = new Boleto("1", LocalDate.now(), 250);
     }
 }

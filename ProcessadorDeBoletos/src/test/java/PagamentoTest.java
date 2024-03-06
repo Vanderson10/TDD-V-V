@@ -12,13 +12,13 @@ public class PagamentoTest {
     Boleto boleto;
 
     @BeforeEach
-    public void criaFaturaEBoleto (){
+    public void criaFaturaEBoleto() {
         this.fatura = new Fatura(LocalDate.now(), 250, "Fulano");
         this.boleto = new Boleto("1", LocalDate.now(), 250);
     }
 
     @Test
-    public void criarPagamentoTest(){
+    public void criarPagamentoTest() {
         Pagamento pagamento = new Pagamento(250, LocalDate.now(), TipoPagamento.BOLETO, this.boleto, this.fatura);
     }
 }

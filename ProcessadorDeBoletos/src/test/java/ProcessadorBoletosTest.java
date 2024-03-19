@@ -1,6 +1,7 @@
 import domain.Boleto;
 import domain.Fatura;
 import domain.ProcessadorBoletos;
+import enumeration.StatusFatura;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,8 +55,9 @@ public class ProcessadorBoletosTest {
         boletoList.add(new Boleto("10", LocalDate.now(), 50));
         boletoList.add(new Boleto("20", LocalDate.now(), 100));
 
-        assertTrue(this.processadorBoletos.processaFatura(fatura, boletoList) < fatura.getValorTotal());
-        assertEquals(150, this.processadorBoletos.processaFatura(fatura, boletoList));
+        double totalPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertTrue(totalPago < fatura.getValorTotal());
+        assertEquals(150, totalPago);
     }
 
     @Test
@@ -72,4 +74,78 @@ public class ProcessadorBoletosTest {
 
         assertEquals(240, this.processadorBoletos.processaFatura(fatura, boletoList2));
     }
+
+    @Test
+    public void processarFaturaBoletoMinMenos1() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 0));
+
+        assertNotNull(new Boleto("11", LocalDate.now(), 0));
+        assertEquals(0, this.processadorBoletos.processaFatura(fatura, boletoList));
+    }
+
+    @Test
+    public void processarFaturaBoletoMin() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 1));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(1, valorPago);
+        assertTrue(valorPago < this.fatura.getValorTotal());
+    }
+
+    @Test
+    public void processarFaturaBoletoMinMais1() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 2));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(2, valorPago);
+        assertTrue(valorPago < this.fatura.getValorTotal());
+        assertEquals(StatusFatura.PENDENTE, this.fatura.getStatusFatura());
+    }
+
+    @Test
+    public void processarFaturaBoletoQualquer() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 85));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(85, valorPago);
+        assertTrue(valorPago < this.fatura.getValorTotal());
+        assertEquals(StatusFatura.PENDENTE, this.fatura.getStatusFatura());
+    }
+
+    @Test
+    public void processarFaturaBoletoMaxMenos1() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 249));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(249, valorPago);
+        assertTrue((this.fatura.getValorTotal() - valorPago) == 1);
+        assertEquals(StatusFatura.PENDENTE, this.fatura.getStatusFatura());
+    }
+    @Test
+    public void processarFaturaBoletoMax() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 250));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(250, valorPago);
+        assertTrue((this.fatura.getValorTotal() - valorPago) == 0);
+        assertEquals(StatusFatura.PAGA, this.fatura.getStatusFatura());
+    }
+
+    @Test
+    public void processarFaturaBoletoMaxMais1() {
+        List<Boleto> boletoList = new ArrayList<Boleto>();
+        boletoList.add(new Boleto("10", LocalDate.now(), 251));
+
+        double valorPago = this.processadorBoletos.processaFatura(fatura, boletoList);
+        assertEquals(251, valorPago);
+        assertTrue((this.fatura.getValorTotal() - valorPago) == -1);
+        assertEquals(StatusFatura.PAGA, this.fatura.getStatusFatura());
+    }
+
 }

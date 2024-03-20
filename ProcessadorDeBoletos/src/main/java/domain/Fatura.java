@@ -76,6 +76,6 @@ public class Fatura {
 
     @Override
     public String toString() {
-        return "O status da fatura " + getId() + "é: " + getStatusFatura() .toString();
+        return "O status da fatura " + getId() + " é: " + getStatusFatura() .toString();
     }
 }

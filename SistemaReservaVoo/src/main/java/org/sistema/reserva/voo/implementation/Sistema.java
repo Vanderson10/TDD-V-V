@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 @Data
 public class Sistema {
-    private List<Voo> voos;
+    private ArrayList<Voo> voos;
 
     public Sistema() {
         this.voos = new ArrayList<>();

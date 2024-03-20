@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -66,7 +67,7 @@ public class Cliente {
         }
     }
 
-    public void pesquisarVoos(Sistema sistema, String origem, String destino, String data, int numeroPassageiros) {
+    public boolean pesquisarVoos(Sistema sistema, String origem, String destino, String data, int numeroPassageiros) {
         boolean encontrou = false;
         System.out.println("Voos encontrados:");
         for (Voo voo : sistema.getVoos()) {
@@ -78,5 +79,6 @@ public class Cliente {
         if (!encontrou) {
             System.out.println("Não há voos disponíveis para os critérios informados.");
         }
+        return encontrou;
     }
 }

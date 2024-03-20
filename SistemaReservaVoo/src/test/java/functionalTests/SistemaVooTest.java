@@ -1,13 +1,11 @@
 package functionalTests;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.sistema.reserva.voo.implementation.Cliente;
 import org.sistema.reserva.voo.implementation.Sistema;
 import org.sistema.reserva.voo.implementation.Voo;
 
-import java.io.OutputStream;
 
 import static org.junit.Assert.*;
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-public class PagamentoTest {
+public class PagamentoTestUnit {
     Fatura fatura;
     Boleto boleto;
 

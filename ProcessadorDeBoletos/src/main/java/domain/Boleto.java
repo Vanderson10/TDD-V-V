@@ -34,7 +34,9 @@ public class Boleto {
         return valorPago;
     }
 
-    public void setValorPago(double valorPago) {
-        this.valorPago = valorPago;
+    @Override
+    public String toString() {
+        return String.format("Código: %s, Data de Pagamento: %s, Valor pago: %.2f", this.getCodigo(), this.getData(), this.getValorPago());
     }
+
 }

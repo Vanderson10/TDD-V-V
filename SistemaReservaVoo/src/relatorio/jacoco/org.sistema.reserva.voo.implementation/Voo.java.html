@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Voo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaReservaVoo</a> &gt; <a href="index.source.html" class="el_package">org.sistema.reserva.voo.implementation</a> &gt; <span class="el_source">Voo.java</span></div><h1>Voo.java</h1><pre class="source lang-java linenums">package org.sistema.reserva.voo.implementation;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+<span class="pc bpc" id="L6" title="57 of 58 branches missed.">@Data</span>
+<span class="nc" id="L7">@NoArgsConstructor</span>
+public class Voo {
+
+<span class="fc" id="L10">    private String data;</span>
+<span class="fc" id="L11">    private String codigo;</span>
+<span class="nc" id="L12">    private double preco;</span>
+<span class="nc" id="L13">    private Cliente cliente;</span>
+<span class="fc" id="L14">    private String localOrigem;</span>
+<span class="fc" id="L15">    private String localDestino;</span>
+<span class="fc" id="L16">    private int numeroPassageiros;</span>
+<span class="nc" id="L17">    private String horario;</span>
+
+<span class="fc" id="L19">    public Voo(String data, String codigo, double preco, String localOrigem, String localDestino, int numeroPassageiros, String horario) {</span>
+<span class="fc" id="L20">        this.data = data;</span>
+<span class="fc" id="L21">        this.codigo = codigo;</span>
+<span class="fc" id="L22">        this.preco = preco;</span>
+<span class="fc" id="L23">        this.localOrigem = localOrigem;</span>
+<span class="fc" id="L24">        this.localDestino = localDestino;</span>
+<span class="fc" id="L25">        this.numeroPassageiros = numeroPassageiros;</span>
+<span class="fc" id="L26">        this.cliente = null;</span>
+<span class="fc" id="L27">        this.horario = horario;</span>
+<span class="fc" id="L28">    }</span>
+
+    public boolean isDisponivel() {
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        return this.numeroPassageiros&gt;0;</span>
+    }
+
+    public double getPrecoTotal() {
+<span class="fc" id="L35">        return this.preco * this.numeroPassageiros;</span>
+    }
+
+    public void imprimirDetalhes() {
+<span class="fc" id="L39">        System.out.println(&quot;Voo &quot; + this.codigo + &quot;:&quot;);</span>
+<span class="fc" id="L40">        System.out.println(&quot;Data: &quot; + this.data);</span>
+<span class="fc" id="L41">        System.out.println(&quot;Origem: &quot; + this.localOrigem);</span>
+<span class="fc" id="L42">        System.out.println(&quot;Destino: &quot; + this.localDestino);</span>
+<span class="fc" id="L43">        System.out.println(&quot;Horário: &quot; + this.horario);</span>
+<span class="fc" id="L44">        System.out.println(&quot;Preço: R$ &quot; + this.preco);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        System.out.println(&quot;Lugares disponíveis: &quot; + (this.numeroPassageiros - (this.cliente == null ? 0 : this.cliente.getNumeroPassageirosEmbarcar())));</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (this.cliente != null) {</span>
+<span class="fc" id="L47">            System.out.println(&quot;Cliente reservado: &quot; + this.cliente.getNome());</span>
+        }
+<span class="fc" id="L49">        System.out.println();</span>
+<span class="fc" id="L50">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

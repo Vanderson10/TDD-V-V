@@ -1,13 +1,26 @@
-import static org.junit.Assert.*;
-import org.junit.*;
+package junit5Tests.testesUnitarios;
+
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.sistema.reserva.voo.implementation.Cliente;
 import org.sistema.reserva.voo.implementation.Voo;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+@DisplayName("Testes operações de Voo")
 public class VooTest {
+
+    private static Voo voo;
+
+    @BeforeAll
+    public static void initialize(){
+        voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100, "16h");
+    }
 
     @Test
     public void testIsDisponivel() {
-        Voo voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100, "16h");
+        voo = new Voo("01/01/2024", "V001", 100.0, "Origem", "Destino", 100, "16h");
         assertTrue(voo.isDisponivel());
 
         // Reservando o voo

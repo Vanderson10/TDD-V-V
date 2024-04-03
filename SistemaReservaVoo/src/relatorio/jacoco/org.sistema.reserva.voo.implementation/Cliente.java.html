@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SistemaReservaVoo</a> &gt; <a href="index.source.html" class="el_package">org.sistema.reserva.voo.implementation</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package org.sistema.reserva.voo.implementation;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc bnc" id="L9" title="All 32 branches missed.">@Data</span>
+<span class="nc" id="L10">@NoArgsConstructor</span>
+public class Cliente {
+
+<span class="fc" id="L13">    private String nome;</span>
+<span class="fc" id="L14">    private int numeroPassageirosEmbarcar;</span>
+<span class="nc" id="L15">    private String telefone;</span>
+<span class="fc" id="L16">    private List&lt;Voo&gt; voosReservados;</span>
+
+<span class="fc" id="L18">    public Cliente(String nome, int numeroPassageirosEmbarcar, String telefone) {</span>
+<span class="fc" id="L19">        this.nome = nome;</span>
+<span class="fc" id="L20">        this.numeroPassageirosEmbarcar = numeroPassageirosEmbarcar;</span>
+<span class="fc" id="L21">        this.telefone = telefone;</span>
+<span class="fc" id="L22">        this.voosReservados = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L23">    }</span>
+
+    public void reservarVoo(Voo voo) {
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        if (voo.isDisponivel() &amp;&amp; voo.getNumeroPassageiros()&gt;0) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (this.numeroPassageirosEmbarcar &lt;= voo.getNumeroPassageiros()) {</span>
+<span class="fc" id="L28">                voo.setCliente(this);</span>
+<span class="fc" id="L29">                this.voosReservados.add(voo);</span>
+<span class="fc" id="L30">                voo.setNumeroPassageiros(voo.getNumeroPassageiros()-this.numeroPassageirosEmbarcar);</span>
+<span class="fc" id="L31">                System.out.println(&quot;Reserva realizada com sucesso!&quot;);</span>
+<span class="fc" id="L32">                System.out.println(&quot;Código da reserva: &quot; + voo.getCodigo());</span>
+<span class="fc" id="L33">                System.out.println(&quot;Preço total: R$ &quot; + voo.getPrecoTotal());</span>
+<span class="fc" id="L34">                System.out.println(&quot;Informações do passageiro:&quot;);</span>
+<span class="fc" id="L35">                System.out.println(&quot;Nome: &quot; + this.nome);</span>
+<span class="fc" id="L36">                System.out.println(&quot;Telefone: &quot; + this.telefone);</span>
+<span class="fc" id="L37">                System.out.println(&quot;Número de passageiros: &quot; + this.numeroPassageirosEmbarcar);</span>
+<span class="fc" id="L38">                System.out.println();</span>
+            } else {
+<span class="fc" id="L40">                System.out.println(&quot;Não há lugares suficientes para o número de passageiros solicitado.&quot;);</span>
+            }
+        } else {
+<span class="nc" id="L43">            System.out.println(&quot;O voo não está disponível.&quot;);</span>
+        }
+<span class="fc" id="L45">    }</span>
+
+    public void cancelarReserva(String codigo) {
+<span class="fc" id="L48">        boolean encontrouCodigoVoo = false;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (Voo voo : this.voosReservados) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (voo.getCodigo().equals(codigo)) {</span>
+<span class="fc" id="L51">                encontrouCodigoVoo = true;</span>
+<span class="fc" id="L52">                voo.setCliente(null);</span>
+<span class="fc" id="L53">                this.voosReservados.remove(voo);</span>
+<span class="fc" id="L54">                System.out.println(&quot;Reserva cancelada com sucesso!&quot;);</span>
+<span class="fc" id="L55">                System.out.println(&quot;Código da reserva: &quot; + voo.getCodigo());</span>
+<span class="fc" id="L56">                System.out.println(&quot;Preço total: R$ &quot; + voo.getPrecoTotal());</span>
+<span class="fc" id="L57">                System.out.println(&quot;Informações do passageiro:&quot;);</span>
+<span class="fc" id="L58">                System.out.println(&quot;Nome: &quot; + this.nome);</span>
+<span class="fc" id="L59">                System.out.println(&quot;Telefone: &quot; + this.telefone);</span>
+<span class="fc" id="L60">                System.out.println(&quot;Número de passageiros: &quot; + this.numeroPassageirosEmbarcar);</span>
+<span class="fc" id="L61">                System.out.println();</span>
+<span class="fc" id="L62">                break;</span>
+            }
+<span class="fc" id="L64">        }</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (!encontrouCodigoVoo) {</span>
+<span class="fc" id="L66">            System.out.println(&quot;Não há reserva com o código informado.&quot;);</span>
+        }
+<span class="fc" id="L68">    }</span>
+
+    public boolean pesquisarVoos(Sistema sistema, String origem, String destino, String data, int numeroPassageiros) {
+<span class="fc" id="L71">        boolean encontrou = false;</span>
+<span class="fc" id="L72">        System.out.println(&quot;Voos encontrados:&quot;);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        for (Voo voo : sistema.getVoos()) {</span>
+<span class="pc bpc" id="L74" title="3 of 8 branches missed.">            if (voo.getLocalOrigem().equals(origem) || voo.getLocalDestino().equals(destino) || voo.getData().equals(data) || voo.getNumeroPassageiros() &gt;= numeroPassageiros) {</span>
+<span class="fc" id="L75">                encontrou = true;</span>
+<span class="fc" id="L76">                voo.imprimirDetalhes();</span>
+            }
+<span class="fc" id="L78">        }</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (!encontrou) {</span>
+<span class="fc" id="L80">            System.out.println(&quot;Não há voos disponíveis para os critérios informados.&quot;);</span>
+        }
+<span class="fc" id="L82">        return encontrou;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

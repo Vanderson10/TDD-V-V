@@ -23,7 +23,7 @@ public class Cliente {
     }
 
     public void reservarVoo(Voo voo) {
-        if (voo.isDisponivel()) {
+        if (voo.isDisponivel() && voo.getNumeroPassageiros()>0) {
             if (this.numeroPassageirosEmbarcar <= voo.getNumeroPassageiros()) {
                 voo.setCliente(this);
                 this.voosReservados.add(voo);

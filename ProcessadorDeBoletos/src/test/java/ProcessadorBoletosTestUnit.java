@@ -2,7 +2,6 @@ import domain.Boleto;
 import domain.Fatura;
 import domain.ProcessadorBoletos;
 import enumeration.StatusFatura;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProcessadorBoletosTest {
+public class ProcessadorBoletosTestUnit {
 
     ProcessadorBoletos processadorBoletos;
     Fatura fatura;

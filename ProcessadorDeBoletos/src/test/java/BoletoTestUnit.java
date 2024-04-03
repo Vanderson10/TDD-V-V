@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-public class BoletoTest {
+public class BoletoTestUnit {
 
     @Test
     public void criarBoletoTest() {
